@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: learn-terraform-namemypet-deployment
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: namemypet
+  template:
+    metadata:
+      labels:
+        app: namemypet
+    spec:
+      containers:
+        - name: flask-back-end
+          image: 258828224076.dkr.ecr.us-east-2.amazonaws.com/demo-repo:latest
+          ports:
+            - containerPort: 5000
