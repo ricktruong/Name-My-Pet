@@ -4,7 +4,7 @@ metadata:
   creationTimestamp: null
   labels:
     app: namemypet
-  name: learn-terraform-namemypet-clusterip-service
+  name: name-my-pet-clusterip-service
 spec:
   ports:
   - name: 8080-5000

@@ -8,14 +8,14 @@ provider "aws" {
 data "aws_availability_zones" "available" {}
 
 locals {
-  cluster_name = "learn-terraform-namemypet"
+  cluster_name = "Name-My-Pet"
 }
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "5.0.0"
 
-  name = "learn-terraform-namemypet-vpc"
+  name = "${local.cluster_name}-VPC"
 
   cidr = "10.0.0.0/16"
   azs  = slice(data.aws_availability_zones.available.names, 0, 3)
@@ -50,8 +50,9 @@ module "eks" {
   }
 
   eks_managed_node_groups = {
+    
     one = {
-      name = "node-group-1"
+      name = "ng-1-app"
 
       instance_types = ["t2.medium"]
 
@@ -59,10 +60,38 @@ module "eks" {
       max_size     = 2
       desired_size = 1
 
-      # capacity_type  = "SPOT"
+      capacity_type  = "SPOT"
+
+      vpc_security_group_ids = [aws_security_group.nodeport-sg.id]
     }
   }
 }
+
+# NodePort security group
+resource "aws_security_group" "nodeport-sg" {
+  name = "nodeport-sg"
+  description = "NodePort - Allow inbound TCP traffic on port 31479"
+  vpc_id = module.vpc.vpc_id
+
+  # NodePort security group inbound rule
+  ingress {
+    description = "HTTPS ingress"
+    from_port   = 31479
+    to_port     = 31479
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+# NodePort security group rule - attach to cluster's primary security group
+# resource "aws_security_group_rule" "sg-nodeport" {
+#   type              = "ingress"
+#   from_port         = 31479
+#   to_port           = 31479
+#   protocol          = "tcp"
+#   cidr_blocks       = ["0.0.0.0/0"]
+#   security_group_id = module.eks.cluster_primary_security_group_id  # Attach this NodePort ingress sg rule to the sg with this id
+# }
 
 
 # https://aws.amazon.com/blogs/containers/amazon-ebs-csi-driver-is-now-generally-available-in-amazon-eks-add-ons/ 

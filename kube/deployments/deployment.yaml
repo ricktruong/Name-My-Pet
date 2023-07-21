@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: learn-terraform-namemypet-deployment
+  name: name-my-pet-deployment
   namespace: default
 spec:
   replicas: 1
