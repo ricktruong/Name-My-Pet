@@ -1,6 +1,3 @@
-# Copyright (c) HashiCorp, Inc.
-# SPDX-License-Identifier: MPL-2.0
-
 provider "aws" {
   region = var.region
 }
@@ -39,7 +36,7 @@ module "eks" {
   cluster_name    = local.cluster_name
   cluster_version = "1.27"
 
-  vpc_id = module.vpc.vpc_id
+  vpc_id                          = module.vpc.vpc_id
   subnet_ids                      = module.vpc.public_subnets
   cluster_endpoint_public_access  = true
   cluster_endpoint_private_access = true
@@ -50,7 +47,7 @@ module "eks" {
   }
 
   eks_managed_node_groups = {
-    
+
     one = {
       name = "ng-1-app"
 
@@ -60,7 +57,7 @@ module "eks" {
       max_size     = 2
       desired_size = 1
 
-      capacity_type  = "SPOT"
+      capacity_type = "SPOT"
 
       vpc_security_group_ids = [aws_security_group.nodeport-sg.id]
     }
@@ -69,9 +66,9 @@ module "eks" {
 
 # NodePort security group
 resource "aws_security_group" "nodeport-sg" {
-  name = "nodeport-sg"
+  name        = "nodeport-sg"
   description = "NodePort - Allow inbound TCP traffic on port 31479"
-  vpc_id = module.vpc.vpc_id
+  vpc_id      = module.vpc.vpc_id
 
   # NodePort security group inbound rule
   ingress {
