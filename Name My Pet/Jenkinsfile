@@ -1,0 +1,43 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                sh 'echo "Build Stage"'
+
+                // 1. Dockerize flask app into Docker image
+
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'echo "Test Stage"'
+
+                // 2. Test docker image/app functionality
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh 'echo "Deploy Stage"'
+
+                // 3. Push flask app image to Amazon ECR
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'The pipeline completed'
+        }
+        success {
+            echo 'Flask Application Up and running!'
+        }
+        failure {
+            echo 'Build failed'
+            error('Stopping early...')
+        }
+    }
+}
