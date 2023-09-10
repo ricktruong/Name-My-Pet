@@ -2,11 +2,18 @@ pipeline {
     agent any
 
     stages {
+        stage('Initialize'){
+            def dockerHome = tool 'my-docker'
+            env.PATH = "${dockerHome}/bin:${env.PATH}"
+        }
+
         stage('Build') {
             steps {
                 sh 'echo "Build Stage"'
                 sh 'ls'
                 sh 'pwd'
+
+                sh 'docker images'
 
                 // 1. Build image for flask app using Dockerfile
                 script {
