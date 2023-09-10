@@ -1,7 +1,7 @@
 pipeline {
     agent {
         dockerfile {
-            customWorkspace '/var/jenkins_home/workspace/Name_My_Pet_main/name-my-pet'
+            customWorkspace '/var/jenkins_home/workspace/Name_My_Pet_main/name-my-pet/name-my-pet'
             filename 'Dockerfile'
         }
     }
