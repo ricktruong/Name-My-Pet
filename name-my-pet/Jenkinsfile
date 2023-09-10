@@ -10,9 +10,10 @@ pipeline {
 
                 // 1. Build image for flask app using Dockerfile
                 script {
-                    docker.build("name-my-pet", "-f name-my-pet/Dockerfile .")
+                    docker.build("name-my-pet", "./name-my-pet")
                 }
 
+                sh 'docker images'
             }
         }
 
