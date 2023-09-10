@@ -5,13 +5,17 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'echo "Build Stage"'
+                
                 sh 'ls'
                 sh 'pwd'
-
                 sh 'docker images'
 
                 // 1. Build image for flask app using Dockerfile
-                script {
+                dir("name-my-pet") {
+                    sh 'ls'
+                    sh 'pwd'
+                    sh 'docker images'
+
                     docker.build("name-my-pet", "./name-my-pet")
                 }
 
