@@ -15,8 +15,9 @@ pipeline {
                     sh 'ls'
                     sh 'pwd'
                     sh 'docker images'
-
-                    docker.build('name-my-pet', '-f Dockerfile .')
+                    script {
+                        docker.build('name-my-pet', '-f Dockerfile .')
+                    }
                 }
 
                 sh 'docker images'
