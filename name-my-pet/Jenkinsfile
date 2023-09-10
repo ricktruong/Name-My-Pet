@@ -6,7 +6,10 @@ pipeline {
             steps {
                 sh 'echo "Build Stage"'
 
-                // 1. Dockerize flask app into Docker image
+                // 1. Build image for flask app using Dockerfile
+                script {
+                    docker.build("name-my-pet", "-f name-my-pet/Dockerfile")
+                }
 
             }
         }
@@ -22,6 +25,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'echo "Deploy Stage"'
+
+                // 3. Run docker image on host machine mapping container port 5000 to host machine port 5000
+                // sh 'docker run -d -p 5000:5000 name-my-pet'
 
                 // 3. Push flask app image to Amazon ECR
             }
