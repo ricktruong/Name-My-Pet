@@ -1,10 +1,4 @@
 pipeline {
-    // agent {
-    //     dockerfile {
-    //         customWorkspace '/var/jenkins_home/workspace/Name_My_Pet_main/name-my-pet'
-    //         filename './name-my-pet/Dockerfile'
-    //     }
-    // }
     agent any
 
     stages {
@@ -19,7 +13,7 @@ pipeline {
                 sh 'ls'
                 sh 'pwd'
                 sh 'ls ./name-my-pet-app'
-                // sh 'docker images'
+                sh 'docker images'
 
                 // 1. Build image for flask app using Dockerfile
                 // dir("name-my-pet") {
