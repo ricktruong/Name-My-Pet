@@ -16,16 +16,16 @@ pipeline {
                 sh 'docker images'
 
                 // 1. Build image for flask app using Dockerfile
-                // dir("name-my-pet") {
-                //     sh 'ls'
-                //     sh 'pwd'
-                //     sh 'docker images'
-                //     script {
-                //         docker.build('name-my-pet', '-f Dockerfile .')
-                //     }
-                // }
+                dir("name-my-pet") {
+                    sh 'ls'
+                    sh 'pwd'
+                    sh 'docker images'
+                    script {
+                        docker.build('name-my-pet', '-f Dockerfile .')
+                    }
+                }
 
-                // sh 'docker images'
+                sh 'docker images'
             }
         }
 
