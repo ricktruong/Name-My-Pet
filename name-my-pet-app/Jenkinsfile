@@ -18,6 +18,7 @@ pipeline {
                 
                 sh 'ls'
                 sh 'pwd'
+                sh 'ls /name-my-pet-app'
                 // sh 'docker images'
 
                 // 1. Build image for flask app using Dockerfile
