@@ -17,6 +17,7 @@ pipeline {
 
                 // 1. Build image for flask app using Dockerfile
                 dir("name-my-pet") {
+                    checkout scm
                     sh 'ls'
                     sh 'pwd'
                     sh 'docker images'
