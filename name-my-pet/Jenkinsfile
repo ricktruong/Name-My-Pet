@@ -1,8 +1,8 @@
 pipeline {
     agent {
         dockerfile {
-            customWorkspace '/var/jenkins_home/workspace/Name_My_Pet_main/name-my-pet'
-            filename 'Dockerfile'
+            // customWorkspace '/var/jenkins_home/workspace/Name_My_Pet_main/name-my-pet'
+            filename './name-my-pet/Dockerfile'
         }
     }
     // agent any
@@ -60,6 +60,8 @@ pipeline {
             
             // Clean workspace after build
             cleanWs()
+
+            echo 'Cleaned workspace'
         }
         success {
             echo 'Flask Application Up and running!'
