@@ -1,11 +1,11 @@
 pipeline {
-    // agent {
-    //     dockerfile {
-    //         customWorkspace './name-my-pet'
-    //         filename 'Dockerfile'
-    //     }
-    // }
-    agent any
+    agent {
+        dockerfile {
+            customWorkspace './name-my-pet'
+            filename 'Dockerfile'
+        }
+    }
+    // agent any
 
     stages {
         stage('Build') {
