@@ -58,7 +58,7 @@ pipeline {
             echo 'The pipeline completed'
             
             // Clean workspace after build
-            cleanWs()
+            // cleanWs()
         }
         success {
             echo 'Flask Application Up and running!'
