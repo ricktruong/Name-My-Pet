@@ -1,10 +1,11 @@
 pipeline {
-    agent {
-        dockerfile {
-            customWorkspace '/var/jenkins_home/workspace/Name_My_Pet_main/name-my-pet/name-my-pet'
-            filename 'Dockerfile'
-        }
-    }
+    // agent {
+    //     dockerfile {
+    //         customWorkspace './name-my-pet'
+    //         filename 'Dockerfile'
+    //     }
+    // }
+    agent any
 
     stages {
         stage('Build') {
