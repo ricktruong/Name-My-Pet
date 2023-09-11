@@ -14,7 +14,7 @@ pipeline {
                 
                 sh 'ls'
                 sh 'pwd'
-                sh 'docker images'
+                // sh 'docker images'
 
                 // 1. Build image for flask app using Dockerfile
                 // dir("name-my-pet") {
@@ -26,7 +26,7 @@ pipeline {
                 //     }
                 // }
 
-                sh 'docker images'
+                // sh 'docker images'
             }
         }
 
