@@ -11,6 +11,9 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'echo "Build Stage"'
+
+                // Clean workspace before build
+                cleanWs()
                 
                 sh 'ls'
                 sh 'pwd'
@@ -53,6 +56,9 @@ pipeline {
     post {
         always {
             echo 'The pipeline completed'
+            
+            // Clean workspace after build
+            cleanWs()
         }
         success {
             echo 'Flask Application Up and running!'
