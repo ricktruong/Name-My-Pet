@@ -18,7 +18,7 @@ pipeline {
                 
                 sh 'ls'
                 sh 'pwd'
-                sh 'ls /name-my-pet-app'
+                sh 'ls ./name-my-pet-app'
                 // sh 'docker images'
 
                 // 1. Build image for flask app using Dockerfile
@@ -61,8 +61,6 @@ pipeline {
             
             // Clean workspace after build
             cleanWs()
-
-            echo 'Cleaned workspace'
         }
         success {
             echo 'Flask Application Up and running!'
